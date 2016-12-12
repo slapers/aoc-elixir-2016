@@ -1,22 +1,25 @@
 defmodule AdventOfCode.DayTwo do
 
-  @part1_file "./lib/adventofcode/resource/day_two.txt"
-  @keypad1 {{7,8,9},
-            {4,5,6},
-            {1,2,3}}
+  @filename "./lib/adventofcode/resource/day_two.txt"
 
-  def move(dir, coordinates) do
-    max_y = tuple_size(@keypad1) - 1
-    max_x = tuple_size(elem(@keypad1, 0)) - 1
+  @keypad1 {{'','','','',''},
+            {'', 1, 2, 3,''},
+            {'', 4, 5, 6,''},
+            {'', 7, 8, 9,''},
+            {'','','','',''}}
 
-    case coordinates do
-      {x, y} -> case dir do
-        "U" when y < max_y -> {x, y+1}
-        "D" when y > 0 -> {x, y-1}
-        "R" when x < max_x -> {x+1, y}
-        "L" when x > 0 -> {x-1, y}
-        _ -> {x, y}
-      end
+  def move(dir, {x, y} = coordinates) do
+
+    new = case dir do
+      "U" -> {x, y-1}
+      "D" -> {x, y+1}
+      "R" -> {x+1, y}
+      "L" -> {x-1, y}
+    end
+
+    case key_for(new) do
+      key when key === '' -> coordinates
+      _ -> new
     end
   end
 
@@ -30,8 +33,8 @@ defmodule AdventOfCode.DayTwo do
     elem(elem(@keypad1, y),x)
   end
 
-  def read_file_part1 do
-    File.read!(@part1_file)
+  def read_file do
+    File.read!(@filename)
       |> String.split("\n")
       |> Enum.map(&String.trim/1)
       |> Enum.filter(fn line -> line != "" end)
@@ -39,7 +42,7 @@ defmodule AdventOfCode.DayTwo do
   end
 
   def part1() do
-    read_file_part1
+    read_file
       |> List.foldl({{1,1}, []}, &line_move/2)
       |> elem(1)
       |> Enum.map(&key_for/1)

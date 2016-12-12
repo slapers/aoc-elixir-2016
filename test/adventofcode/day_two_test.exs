@@ -3,8 +3,8 @@ defmodule AdventofcodeTest.DayTwo do
 
   test "move moves to the key above" do
 
-    assert {1,2} == AdventOfCode.DayTwo.move("U", {1,1})
-    assert {1,2} == AdventOfCode.DayTwo.move("U", {1,2})
+    assert {2,1} == AdventOfCode.DayTwo.move("U", {2,2})
+    assert {2,1} == AdventOfCode.DayTwo.move("U", {2,1})
   end
 
   test "part1 reveals the code" do
