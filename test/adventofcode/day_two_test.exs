@@ -17,4 +17,8 @@ defmodule AdventofcodeTest.DayTwo do
     assert [3, 5, 7, 4, 9] == AdventOfCode.DayTwo.part1()
   end
 
+  test "part2 reveals the code" do
+    assert [9, 3, 6, 5, "C"] == AdventOfCode.DayTwo.part2()
+  end
+
 end

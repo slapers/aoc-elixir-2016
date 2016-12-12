@@ -8,6 +8,14 @@ defmodule AdventOfCode.DayTwo do
             {'', 7, 8, 9,''},
             {'','','','',''}}
 
+  @keypad2 {{'','','','','','',''},
+            {'','','', 1,'','',''},
+            {'','', 2, 3, 4,'',''},
+            {'', 5, 6, 7, 8, 9,''},
+            {'','',"A","B","C",'',''},
+            {'','','',"D",'','',''},
+            {'','','','','','',''}}
+
   def move(dir, keypad, {x, y} = coordinates) do
     maybe_newpos = case dir do
       "U" -> {x, y-1}
@@ -44,6 +52,13 @@ defmodule AdventOfCode.DayTwo do
       |> List.foldl({{1,1}, []}, &line_move(&1,@keypad1,&2))
       |> elem(1)
       |> Enum.map(&key_on(@keypad1, &1))
+  end
+
+  def part2() do
+    read_file
+      |> List.foldl({{3,1}, []}, &line_move(&1,@keypad2,&2))
+      |> elem(1)
+      |> Enum.map(&key_on(@keypad2, &1))
   end
 
 
