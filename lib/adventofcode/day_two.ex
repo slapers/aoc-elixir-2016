@@ -8,29 +8,27 @@ defmodule AdventOfCode.DayTwo do
             {'', 7, 8, 9,''},
             {'','','','',''}}
 
-  def move(dir, {x, y} = coordinates) do
-
-    new = case dir do
+  def move(dir, keypad, {x, y} = coordinates) do
+    maybe_newpos = case dir do
       "U" -> {x, y-1}
       "D" -> {x, y+1}
       "R" -> {x+1, y}
       "L" -> {x-1, y}
     end
-
-    case key_for(new) do
+    case key_on(keypad, maybe_newpos) do
       key when key === '' -> coordinates
-      _ -> new
+      _ -> maybe_newpos
     end
   end
 
-  def line_move(movements, {initialpos, keypositions}) do
+  def line_move(movements, keypad, {initialpos, keypositions}) do
     newpos = movements
-      |> List.foldl(initialpos, &move/2)
+      |> List.foldl(initialpos, &move(&1, keypad, &2))
     {newpos, keypositions ++ [newpos]}
   end
 
-  def key_for({x,y}) do
-    elem(elem(@keypad1, y),x)
+  def key_on(keypad, {x,y}) do
+    elem(elem(keypad, y),x)
   end
 
   def read_file do
@@ -43,9 +41,9 @@ defmodule AdventOfCode.DayTwo do
 
   def part1() do
     read_file
-      |> List.foldl({{1,1}, []}, &line_move/2)
+      |> List.foldl({{1,1}, []}, &line_move(&1,@keypad1,&2))
       |> elem(1)
-      |> Enum.map(&key_for/1)
+      |> Enum.map(&key_on(@keypad1, &1))
   end
 
 
