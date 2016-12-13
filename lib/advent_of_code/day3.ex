@@ -13,28 +13,29 @@ defmodule AdventOfCode.Day3 do
         end)
   end
 
-  def sort_row(row) do
-    row
-    |> Enum.sort()
+  def transpose(lists) do
+    List.zip(lists) |> Enum.map(&Tuple.to_list/1)
+  end
+
+  def sort_lists(lists) do
+    Enum.map(lists, &Enum.sort/1)
   end
 
   def part1() do
     parse_file()
-    |> Enum.map(&sort_row/1)
+    |> sort_lists
     |> Enum.filter(fn([a,b,c]) -> a + b > c end)
     |> Enum.count()
   end
 
-  # http://stackoverflow.com/questions/23705074/is-there-a-transpose-function-in-elixir
-  def transpose([[]|_]), do: []
-  def transpose(a) do
-    [Enum.map(a, &hd/1) | transpose(Enum.map(a, &tl/1))]
-  end
-
   def part2() do
-    parse_file()
-    |> transpose
-    |> IO.inspect()
+    for lines <- parse_file() |> transpose do
+      lines
+      |> Enum.chunk(3)
+      |> sort_lists
+      |> Enum.filter(fn([a,b,c]) -> a + b > c end)
+      |> Enum.count
+    end
+    |> Enum.sum()
   end
-
 end
