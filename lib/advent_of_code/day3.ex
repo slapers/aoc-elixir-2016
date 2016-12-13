@@ -1,4 +1,4 @@
-defmodule AdventOfCode.DayThree do
+defmodule AdventOfCode.Day3 do
 
   alias AdventOfCode.Common
 
@@ -25,9 +25,16 @@ defmodule AdventOfCode.DayThree do
     |> Enum.count()
   end
 
+  # http://stackoverflow.com/questions/23705074/is-there-a-transpose-function-in-elixir
+  def transpose([[]|_]), do: []
+  def transpose(a) do
+    [Enum.map(a, &hd/1) | transpose(Enum.map(a, &tl/1))]
+  end
+
   def part2() do
     parse_file()
-    |> Enum.take
+    |> transpose
+    |> IO.inspect()
   end
 
 end

@@ -1,4 +1,4 @@
-defmodule AdventOfCodeTest.Day2 do
+defmodule AdventofcodeTest.Day2 do
   use ExUnit.Case
 
   @keypad1 {{'','','','',''},
