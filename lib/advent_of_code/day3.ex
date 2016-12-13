@@ -4,9 +4,6 @@ defmodule AdventOfCode.Day3 do
 
   def parse_file() do
     Common.read_file(3)
-    |> String.split("\n")
-    |> Enum.map(&String.trim/1)
-    |> Enum.filter(fn(x) -> x != "" end)
     |> Enum.map(fn(line) ->
         String.split(line)
         |> Enum.map(&String.to_integer/1)
