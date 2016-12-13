@@ -16,4 +16,8 @@ defmodule AdventOfCodeTest.Day4 do
     assert 185371 == D4.part1() |> IO.inspect()
   end
 
+  test "part2 yields the correct result" do
+    assert 984 == D4.part2() |> IO.inspect()
+  end
+
 end
