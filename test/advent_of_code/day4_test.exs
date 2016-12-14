@@ -2,7 +2,6 @@ defmodule AdventOfCodeTest.Day4 do
   use ExUnit.Case
 
   alias AdventOfCode.Day4, as: D4
-  alias AdventOfCode.Day4.Room, as: Room
 
   test "parse_room parses a room" do
     D4.parse_room("aaaaa-bbb-z-y-x-123[abxyz]")

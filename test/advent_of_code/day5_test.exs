@@ -1,8 +1,7 @@
 defmodule AdventOfCodeTest.Day5 do
   use ExUnit.Case, async: true
 
-  alias AdventOfCode.Day5, as: D5
-
+  #alias AdventOfCode.Day5, as: D5
 
   describe "Part 1" do
     # test "md5" do
