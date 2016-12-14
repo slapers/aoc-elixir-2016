@@ -11,12 +11,31 @@ defmodule AdventOfCode.Day6 do
     |> Enum.join()
   end
 
+  def part2() do
+    Common.read_file(6)
+    |> Enum.map(&String.graphemes/1)
+    |> List.zip
+    |> Enum.map(&Tuple.to_list/1)
+    |> Enum.map(&reduce_lowest_occurrence/1)
+    |> Enum.join()
+  end
+
   def reduce_highest_occurrence(list) do
+    reduce_sorted_occurence(list)
+    |> List.first
+    |> elem(0)
+  end
+
+  def reduce_lowest_occurrence(list) do
+    reduce_sorted_occurence(list)
+    |> List.last()
+    |> elem(0)
+  end
+
+  def reduce_sorted_occurence(list) do
     Enum.reduce(list, %{}, &update_occurence/2)
     |> Map.to_list()
     |> Enum.sort(&sort_by_count/2)
-    |> List.first
-    |> elem(0)
   end
 
   def update_occurence(el, map) do
