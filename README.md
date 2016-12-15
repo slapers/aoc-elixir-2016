@@ -1,24 +1,9 @@
 # Adventofcode
 
-**TODO: Add description**
+Solutions to the advent of code 2016 written in elixir.
+I started the first day without having written anything in elixir, hoping to
+learn elixir while doing the aoc
+Also i started coding on day 7 or so.. so i'm running a bit behind :-)
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
-
-  1. Add `adventofcode` to your list of dependencies in `mix.exs`:
-
-    ```elixir
-    def deps do
-      [{:adventofcode, "~> 0.1.0"}]
-    end
-    ```
-
-  2. Ensure `adventofcode` is started before your application:
-
-    ```elixir
-    def application do
-      [applications: [:adventofcode]]
-    end
-    ```
-
+I really appreciate if you have comments/feedback/rants...anything that helps
+me get better at this.
