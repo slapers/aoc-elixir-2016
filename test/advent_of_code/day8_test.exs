@@ -25,7 +25,6 @@ defmodule AdventOfCodeTest.Day8 do
 
     test "rotate_row" do
       cmd = {:rotate_row, 0, 1}
-      lcd = D8.create_lcd(3,2)
       assert [[1,0,1],
               [1,1,0]] == D8.do_command(cmd, [[0,1,1],
                                               [1,1,0]])
@@ -33,7 +32,6 @@ defmodule AdventOfCodeTest.Day8 do
 
     test "rotate_column" do
       cmd = {:rotate_column, 1, 3}
-      lcd = D8.create_lcd(3,2)
       assert [[0,0,1],
               [1,1,1],
               [1,1,1],
@@ -46,8 +44,9 @@ defmodule AdventOfCodeTest.Day8 do
   end
 
 
-  test "part1" do
-    D8.part1() |> IO.inspect
-  end
+  # test "part1" do
+  #   assert 119 == D8.part1()
+  # end
+
 
 end

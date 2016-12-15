@@ -44,7 +44,7 @@ defmodule AdventOfCode.Day8 do
         end)
   end
 
-  def do_command({:rotate_row, y, by} = cmd, lcd) do
+  def do_command({:rotate_row, y, by}, lcd) do
     lcd
       |> Enum.with_index()
       |> Enum.map(fn {line, idx} ->
@@ -77,18 +77,33 @@ defmodule AdventOfCode.Day8 do
   end
 
   def create_lcd(x,y) do
-    for rows <- 1..y do
+    for _ <- 1..y do
       List.duplicate(0, x)
     end
-    |> IO.inspect
   end
 
   def draw_lcd(lcd) do
     lcd
-      |> Enum.map(&Enum.join/1)
+      |> Enum.map(&create_lcd_line_drawing/1)
       |> Enum.join("\n")
       |> IO.puts
     lcd
+  end
+
+  def create_lcd_line_drawing(line) do
+    line
+    |> Enum.chunk(5)
+    |> Enum.map(&map_lcd_characters/1)
+    |> Enum.join("  ")
+  end
+
+  def map_lcd_characters(chars) do
+    for char <- chars do
+      case char do
+        0 -> " "
+        1 -> '\u2588'
+      end
+    end
   end
 
   def count_lcd_pixels(lcd) do
